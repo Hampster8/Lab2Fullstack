@@ -1,0 +1,15 @@
+{
+  "name": "lab2fullstack",
+  "version": "1.0.0",
+  "description": "Hampus Andersson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "dev": "concurrently \"npm start\" \"node server.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
