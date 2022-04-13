@@ -1,5 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin"); 
- 
+
 module.exports = { 
   module: { 
     rules: [ 
@@ -12,9 +12,10 @@ module.exports = {
       } 
     ] 
   }, 
+    entry: './frontend/src/index.js',
   plugins: [ 
     new HtmlWebPackPlugin({ 
-    template: "./src/index.html", 
+    template: "./frontend/src/index.html", 
     filename: "./index.html" 
   })
 ] 
