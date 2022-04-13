@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const router = express();
 const PORT = process.env.PORT || 3000;
+const router = express();
 
 const courseRoutes = require('./src/routes/Course.routes');
 const registrationRoutes = require('./src/routes/Registration.routes');

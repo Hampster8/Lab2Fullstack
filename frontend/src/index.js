@@ -1,56 +1,30 @@
-import React from "react"; 
-import { Table, Header, HeaderRow, Body, Row, Cell } from "@table-library/react-table-library";
-import { useSortBy, HeaderCellSort} from "@table-library/react-table-library/sort";
-import { usePagination } from "@table-library/react-table-library/pagination";
-
-function getRegistrations(){
-    const URL = '/api/user';
-    let data = fetch(URL)
-    .then(res => res.json())
-    .then(data => fillTable(data))
-    .catch(e => alert(e));
-}
-
-function createStudent(){
-    const URL = `/api/user`
-    let data = {
-        name: document.getElementById("name").value, 
-        age: document.getElementById("age").value
-    }
-    let response = fetch(URL,{
-        method: 'POST', 
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-}
+import React, { useState, useEffect } from "react"; 
+import "./index.css";
+import axios from 'axios';
 
 
 
 const App = () => {
-    return(
-            <table>
-                <caption>Latest 5 Registers</caption>
-                    <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Student name</th>
-                            <th>Course name</th>
-                            <th>Registration time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map(product => (
-                        <tr key={product.id}>
-                            <td>{product.name}</td>
-                            <td>{product.price}</td>
-                            <td>{product.stock}</td>
-                        </tr>
-                        ))}
-                    </tbody>
-            </table>
-    )
+
+    useEffect(async () => {
+        const result = await axios(
+          'https://hn.algolia.com/api/v1/search?query=redux',
+        );
+    
+        setData(result.data);
+      });
+
+      const [data, setData] = useState({ hits: [] });
+
+      return (
+        <ul>
+          {data.hits.map(item => (
+            <li key={item.objectID}>
+                <a href={item.url}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      );
 }
 
 const root = createRoot(document.getElementById('app'));
