@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"; 
-import "./index.css";
 import axios from 'axios';
+import * as ReactDOM from 'react-dom/client';
 
 
-
-const App = () => {
+function App() {
 
     useEffect(async () => {
         const result = await axios(
@@ -17,6 +16,7 @@ const App = () => {
       const [data, setData] = useState({ hits: [] });
 
       return (
+        <>
         <ul>
           {data.hits.map(item => (
             <li key={item.objectID}>
@@ -24,8 +24,8 @@ const App = () => {
             </li>
           ))}
         </ul>
+        </>
       );
 }
 
-const root = createRoot(document.getElementById('app'));
-root.render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(< App />);
