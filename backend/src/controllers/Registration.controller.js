@@ -1,9 +1,8 @@
-const { Registration } = require('../models/Registration');
+const Registration  = require('../models/Registration');
 // =========================================================
 
 const getRegistration =  async (req, res) => {
-    const { student_id, course_id } = req.body;
-
+    const { student_id, course_id } = req.body.student._id;
     const registration = new Registration({
         student: student_id,
         course: course_id,
@@ -20,19 +19,19 @@ const createRegistration = async (req, res) => {
             res.send(registration);
         })
 };
-
+/*
 const getLatestRegistrations = async (req, res) => {
-    const registrations = await Registration
+    const registration = await Registration
         .find()
         .sort({unix_timestamp: -1})
         .limit(5)
         .pretty()
-    res.send(registrations);
+    res.send(registration);
 };
-
+*/
 // =========================================================
 module.exports = {
     getRegistration,
-    createRegistration,
-    getLatestRegistrations
+    createRegistration
+    //getLatestRegistrations
 };

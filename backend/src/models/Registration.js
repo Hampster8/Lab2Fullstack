@@ -17,8 +17,9 @@ const registrationSchema = new Schema({
         type: Date,
         default: Date.now()
     }
-});
+},
+{collection: 'registration'});
+
 
 // =========================================================
-const Registration = mongoose.model('Registration', registrationSchema);
-module.exports = Registration;
+module.exports = mongoose.model('Registration', registrationSchema);

@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react"; 
-import axios from 'axios';
-import * as ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
+import Registration from "../../backend/src/models/Registration";
 
 
 function App() {
 
-    useEffect(async () => {
-        const result = await axios(
-          'https://hn.algolia.com/api/v1/search?query=redux',
-        );
-    
+    const [registration, setRegistration] = useState([]);  
+
+    useEffect(() => {
+        fetch('http://localhost:3000/api/registration', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(resp => resp.json())
+        .then(data => setRegisters(data))
         setData(result.data);
       });
 
@@ -17,13 +23,9 @@ function App() {
 
       return (
         <>
-        <ul>
-          {data.hits.map(item => (
-            <li key={item.objectID}>
-                <a href={item.url}>{item.title}</a>
-            </li>
-          ))}
-        </ul>
+          <div>
+            <Registration registration={registration}/>
+          </div>
         </>
       );
 }

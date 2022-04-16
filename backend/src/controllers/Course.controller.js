@@ -10,11 +10,11 @@ const createCourse = async (req, res) => {
     res.send(course);
 };
 
-/*
 const getCourses = async (req, res) => {
     const allCourses = await Course.find();
     return res.status(200).json(allCourses);
 }
+/*
 
 const getCourseByID = async (req, res) => {
     const course = await Course.findOneById(req.params.id);
@@ -43,8 +43,8 @@ const deleteCourse = async (req, res) => {
 
 // =========================================================
 module.exports = {
-    createCourse
-    // getCourses,
+    createCourse,
+    getCourses
     //getCourseByID,
     //updateCourse,
     //deleteCourse

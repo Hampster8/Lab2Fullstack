@@ -1,33 +1,34 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require('mongoose');
 const express = require('express');
 const PORT = process.env.PORT || 3000;
-const router = express();
+const app = express();
 
-const courseRoutes = require('./src/routes/Course.routes');
-const registrationRoutes = require('./src/routes/Registration.routes');
-const studentRoutes = require('./src/routes/Student.routes');
+const path = require('path');
+const Router = require('./src/routes/router');
+// ===============================
+app.use(express.json());
+app.use('/', express.static(path.join(__dirname, '..', 'dist/')));
+app.use('/api', Router);
 
-const dbURL = "mongodb+srv://hamps:hampspw@hampsfullstackdb.sarkc.mongodb.net/Lab2Fullstack?retryWrites=true&w=majority"
+const connect = async () => {
+    await mongoose.connect(process.env.ATLAS_URI, {useNewUrlParser: true,useUnifiedTopology: true}, (err) => {
+        if (!err) {
+            console.log('MongoDB Connection Succeeded.')
+        } else {
+            console.log('Error in DB connection: ' + err)
+        }
+        
+    })
+    
+}
 
-mongoose.connect(dbURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, (err) => {
-    if (!err) {
-        console.log('MongoDB Connection Succeeded.')
-    } else {
-        console.log('Error in DB connection: ' + err)
-    }
-});
-
-router.use(express.urlencoded({ extended: false }))
-router.use(express.json());
-router.use(express.static('public'));
-router.use('/api/students', courseRoutes);
-router.use('/api/registrations', registrationRoutes);
-router.use('/api/courses', studentRoutes);
-
-
-router.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`)
+connect()
+.then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`)
+    })
 })
+
+

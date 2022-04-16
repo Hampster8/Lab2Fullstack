@@ -10,11 +10,12 @@ const createStudent = async (req, res) => {
     await student.save();
     res.send(student);
 };
-/*
+
 const getStudents = async (req, res) => {
     const allStudents = await Student.find();
     return res.status(200).json(allStudents);
 }
+/*
 
 const getStudentByID = async (req, res) => {
     const student = await Student.findOne({ student_id: req.params.id });
@@ -46,7 +47,7 @@ const deleteStudent = async (req, res) => {
 */
 // =========================================================
 module.exports = {
-    //getStudents,
+    getStudents,
     //getStudentByID,
     //updateStudent,
     //deleteStudent,

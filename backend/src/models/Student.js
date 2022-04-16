@@ -16,8 +16,8 @@ const studentSchema = new Schema({
         minlength: 2,
         format: "email"
     }
-});
+},
+{collection: 'student'});
 
 // =========================================================
-const Student = mongoose.model('Student', studentSchema)
-module.exports = Student;
+module.exports = mongoose.model('Student', studentSchema)

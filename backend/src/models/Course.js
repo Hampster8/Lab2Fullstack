@@ -13,10 +13,10 @@ const courseSchema = new Schema({
         required: true,
         maxlength: 1024
     }
-});
+},
+{collection: 'course'});
 
 // =========================================================
-const Course = mongoose.model('Course', courseSchema);
-module.exports = Course;
+module.exports = mongoose.model('Course', courseSchema);
 
 
