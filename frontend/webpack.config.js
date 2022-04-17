@@ -1,3 +1,4 @@
+const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin"); 
 
 module.exports = { 
@@ -24,6 +25,12 @@ module.exports = {
     new HtmlWebPackPlugin({ 
     template: "./frontend/src/index.html", 
     filename: "./index.html" 
-  })
-] 
+  })],
+  devServer: {
+    static: path.resolve(__dirname, "./dist"),
+    open: true,
+    proxy: {
+      "/api": "http://localhost:3000/",
+    }
+  } 
 }; 
