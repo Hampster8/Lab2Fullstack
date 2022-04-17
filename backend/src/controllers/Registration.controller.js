@@ -10,14 +10,8 @@ const getLatestRegistrations = async (req, res) => {
     res.status(200).json(registration);
 };
 
-
-
-
-
-
 // =========================================================
 module.exports = {
-    //getRegistration,
-    //populateRegistration,
+
     getLatestRegistrations
 };
