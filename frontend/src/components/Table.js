@@ -1,21 +1,27 @@
 import React, {useState, useEffect} from 'react';
 
 const Table = () => {
-
-  const getDb = (dbName) => {
-    fetch(`/api/${dbName}`)
+  const getDb = () => {
+    fetch('/api/latest')
     .then(res => res.json())
-    .then(data => {console.log(data)})
+    .then(data => setData(data))
     .catch(err => console.error(err))
   }
   
   const [data, setData] = useState([]);
   useEffect(() =>{
-    getDb("student")
-    getDb("course")
-    getDb("latest")
+    getDb()
   },[])
-
+const tableData = data.map((item,key) =>{
+  return (
+    <tr key={key}>
+      <td>{item.student._id}</td>
+      <td>{item.student.full_name}</td>
+      <td>{item.course.course_name}</td>
+      <td>{item.unix_timestamp}</td>
+    </tr>
+  )
+})
   return (
     <div className="table_container">
       <table>
@@ -27,16 +33,9 @@ const Table = () => {
           <th>Registration Time</th>
         </tr>
       </thead>
-        { data.map((item,key) =>{
-          return (
-            <tr key={key}>
-              <td>{item.student._id}</td>
-              <td>{item.student.full_name}</td>
-              <td>{item.course.name}</td>
-              <td>{item.registration.unix_timestamp}</td>
-            </tr>
-          )
-        })}
+        <tbody>
+          {tableData}
+        </tbody>
       </table>
     </div>
   );

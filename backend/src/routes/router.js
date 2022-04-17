@@ -8,8 +8,8 @@ const router = express.Router();
 router.post('/', studentController.createStudent)
 router.get('/student', studentController.getStudents)
 
-//router.get('/registration', registrationController.getRegistration)
 router.get('/latest', registrationController.getLatestRegistrations)
+//router.get('/latest', registrationController.populateRegistration)
 //router.post('/registration', registrationController.createRegistration)
 
 router.post('/', courseController.createCourse)
