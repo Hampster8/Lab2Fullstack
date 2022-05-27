@@ -25,9 +25,7 @@ const connect = async () => {
         } else {
             console.log('Error in DB connection: ' + err)
         }
-        
     })
-    
 }
 
 connect()
