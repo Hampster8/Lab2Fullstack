@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import Table from './src/components/Table';
 import './src/index.css'
 
+
 const App = () => {
   return (
 

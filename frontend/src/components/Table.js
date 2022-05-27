@@ -9,9 +9,13 @@ const Table = () => {
   }
   
   const [data, setData] = useState([]);
-  useEffect(() =>{
+  useEffect(() => {
     getDb()
-  },[])
+    const refreshTimer = setInterval(() => {
+      getDb();
+    }, 60000);
+    return () => clearInterval(refreshTimer);
+}, []);
   
   const [order, setOrder] = useState('ASC');
     const sorting = (col) => {
